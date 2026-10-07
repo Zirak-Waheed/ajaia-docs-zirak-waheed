@@ -1,7 +1,10 @@
 // Adds Underline and Heading 2 to Trix (ActionText's editor ships with neither).
 // Trix registers its custom elements on a setTimeout, so config set here applies
 // before any editor loads its saved HTML.
-import Trix from "trix"
+// The "trix" pin is a UMD build with no default export: it sets window.Trix.
+import "trix"
+
+const Trix = window.Trix
 
 Trix.config.textAttributes.underline = { tagName: "u", inheritable: true }
 Trix.config.blockAttributes.heading2 = { tagName: "h2", terminal: true, breakOnReturn: true, group: false }
