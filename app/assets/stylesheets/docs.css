@@ -18,7 +18,7 @@ h3 { font-size: .9rem; margin: 1rem 0 .4rem; color: var(--muted); text-transform
 
 .btn, input[type=submit] { font: inherit; border: 1px solid var(--line); background: var(--surface); color: var(--text); border-radius: 6px; padding: .45rem .9rem; cursor: pointer; }
 .btn:hover { border-color: #c7ccd4; }
-.btn-primary, .btn-primary:hover { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-primary, .btn-primary:hover, input[type=submit].btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .btn-danger { color: var(--danger); border-color: #f0c9c5; }
 .btn-link { background: none; border: 0; padding: 0; color: var(--accent); cursor: pointer; font: inherit; text-decoration: underline; }
 form.button_to { display: inline; margin: 0; }

@@ -1,11 +1,20 @@
-<%= tag.div(flash[:alert], style: "color:red") if flash[:alert] %>
-<%= tag.div(flash[:notice], style: "color:green") if flash[:notice] %>
+<% content_for :title, "Sign in · Ajaia Docs" %>
 
-<%= form_with url: session_path do |form| %>
-  <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %><br>
-  <%= form.password_field :password, required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %><br>
-  <%= form.submit "Sign in" %>
-<% end %>
-<br>
+<div class="card" style="max-width: 420px; margin: 3rem auto;">
+  <h1 style="margin-bottom: 1rem;">Sign in</h1>
 
-<%= link_to "Forgot password?", new_password_path %>
+  <%= form_with url: session_path, class: "share-form" do |form| %>
+    <%= form.email_field :email_address, required: true, autofocus: true, autocomplete: "username",
+          placeholder: "Email address", value: params[:email_address] %>
+    <%= form.password_field :password, required: true, autocomplete: "current-password",
+          placeholder: "Password", maxlength: 72, style: "grid-column: 1 / -1;" %>
+    <%= form.submit "Sign in", class: "btn btn-primary", style: "grid-column: 1 / -1;" %>
+  <% end %>
+
+  <div class="login-hint">
+    <strong>Test accounts</strong> (password <code>password123</code>):<br>
+    <code>alice@example.com</code> owner ·
+    <code>bob@example.com</code> editor ·
+    <code>carol@example.com</code> viewer
+  </div>
+</div>
