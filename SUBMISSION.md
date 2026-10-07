@@ -5,12 +5,12 @@
 | Item | Location |
 |---|---|
 | Live product | _<Render URL>_ |
-| Source code | `source/` in this folder, also at _<GitHub URL>_ |
+| Source code | `source/` in this folder, also at https://github.com/Zirak-Waheed/ajaia-docs-zirak-waheed |
 | Setup and run instructions | `README.md` |
 | Architecture note | `ARCHITECTURE.md` |
 | AI workflow note | `AI_WORKFLOW.md` |
 | Walkthrough video | `VIDEO_URL.txt` |
-| Screenshots | `screenshots/` |
+| Screenshots | `screenshots/` (also in the repo) |
 
 ## Test accounts
 

@@ -36,7 +36,8 @@ bin/rails server          # http://localhost:3000
 ## Tests
 
 ```bash
-bin/rails test
+bin/rails test           # models, services, integration (no browser)
+bin/rails test:system    # editor in headless Chrome (needs Chrome installed)
 ```
 
 - `test/integration/document_access_test.rb` drives the HTTP flow for each role:
@@ -45,7 +46,8 @@ bin/rails test
   - an editor can edit and a viewer cannot
   - only the owner can share
   - import works and unsupported types are rejected
-- `test/services/document_importer_test.rb` covers the conversion rules and input validation.
+- `test/services/document_importer_test.rb` covers the conversion rules and input validation, including a .docx fixture.
+- `test/system/editor_test.rb` checks that the Underline and H2 toolbar buttons work and survive a reload, and that a viewer gets the read-only page.
 
 ## Deploy (Render, free tier)
 
