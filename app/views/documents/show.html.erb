@@ -1,0 +1,15 @@
+<% content_for :title, "#{@document.title} · Ajaia Docs" %>
+
+<div class="editor-layout">
+  <div class="editor-main">
+    <div class="doc-head">
+      <h1 class="doc-view-title"><%= @document.title %></h1>
+      <span class="badge badge-viewer">View only</span>
+    </div>
+    <div class="card doc-body"><%= @document.body %></div>
+  </div>
+
+  <aside class="sidebar">
+    <%= render "sharing", document: @document %>
+  </aside>
+</div>

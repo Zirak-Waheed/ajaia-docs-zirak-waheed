@@ -1,0 +1,17 @@
+<% if documents.empty? %>
+  <p class="empty"><%= empty %></p>
+<% else %>
+  <ul class="doc-list">
+    <% documents.each do |doc| %>
+      <% role = doc.role_for(Current.user) %>
+      <li class="doc-row">
+        <%= link_to doc.title, (doc.editable_by?(Current.user) ? edit_document_path(doc) : document_path(doc)), class: "doc-title" %>
+        <span class="badge badge-<%= role %>"><%= role.capitalize %></span>
+        <span class="meta">
+          Owner: <%= doc.owned_by?(Current.user) ? "you" : doc.owner.email_address %>
+          · updated <%= time_ago_in_words(doc.updated_at) %> ago
+        </span>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

@@ -1,0 +1,4 @@
+bob_edits_alice_doc:
+  document: alice_doc
+  user: bob
+  role: editor

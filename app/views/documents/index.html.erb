@@ -1,0 +1,25 @@
+<% content_for :title, "Documents · Ajaia Docs" %>
+
+<div class="page-head">
+  <h1>Documents</h1>
+  <%= button_to "+ New document", documents_path, class: "btn btn-primary" %>
+</div>
+
+<section class="card import-card">
+  <h2>Import a file</h2>
+  <%= form_with url: import_path, multipart: true, class: "inline-form" do |f| %>
+    <%= f.file_field :file, accept: ".txt,.md,.markdown,.docx", required: true %>
+    <%= f.submit "Import as new document", class: "btn" %>
+  <% end %>
+  <p class="hint">Supported: <strong>.txt</strong>, <strong>.md</strong>, <strong>.docx</strong> (max 5 MB). Each file becomes a new editable document that you own.</p>
+</section>
+
+<section id="owned-docs" class="doc-section">
+  <h2>Owned by me <span class="count"><%= @owned.size %></span></h2>
+  <%= render "list", documents: @owned, empty: "You haven't created any documents yet." %>
+</section>
+
+<section id="shared-docs" class="doc-section">
+  <h2>Shared with me <span class="count"><%= @shared.size %></span></h2>
+  <%= render "list", documents: @shared, empty: "Nothing has been shared with you yet." %>
+</section>

@@ -1,0 +1,37 @@
+<% owner = document.owned_by?(Current.user) %>
+<section class="card">
+  <h2>Access</h2>
+  <p><strong>Owner:</strong> <%= owner ? "You (#{document.owner.email_address})" : document.owner.email_address %></p>
+  <p><strong>Your access:</strong> <span class="badge badge-<%= document.role_for(Current.user) %>"><%= document.role_for(Current.user).capitalize %></span></p>
+
+  <h3>Shared with</h3>
+  <% shares = document.shares.includes(:user).order(:created_at) %>
+  <% if shares.any? %>
+    <ul class="share-list">
+      <% shares.each do |share| %>
+        <li>
+          <span><%= share.user.email_address %></span>
+          <span class="badge badge-<%= share.role %>"><%= share.role %></span>
+          <% if owner %>
+            <%= button_to "Remove", document_share_path(document, share), method: :delete, class: "btn-link",
+                  form: { data: { turbo_confirm: "Remove #{share.user.email_address}'s access?" } } %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="empty">Not shared with anyone yet.</p>
+  <% end %>
+
+  <% if owner %>
+    <%= form_with url: document_shares_path(document), class: "share-form" do |f| %>
+      <%= f.email_field :email_address, placeholder: "bob@example.com", required: true, "aria-label": "Email to share with" %>
+      <%= f.select :role, [ [ "Can edit", "editor" ], [ "Can view", "viewer" ] ], {}, "aria-label": "Access level" %>
+      <%= f.submit "Share", class: "btn btn-primary" %>
+    <% end %>
+
+    <hr>
+    <%= button_to "Delete document", document_path(document), method: :delete, class: "btn btn-danger",
+          form: { data: { turbo_confirm: "Delete this document for everyone?" } } %>
+  <% end %>
+</section>
